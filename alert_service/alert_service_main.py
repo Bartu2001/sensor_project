@@ -1,12 +1,9 @@
-# ============================================
-# 📚 IMPORTS
-# ============================================
 import psycopg2
 import time
 
-# ============================================
-# 🔌 DATABASE CONNECTION
-# ============================================
+
+#DATABASE CONNECTION
+
 conn = psycopg2.connect(
     host="localhost",
     database="postgres",
@@ -15,17 +12,14 @@ conn = psycopg2.connect(
 )
 cur = conn.cursor()
 
-# ============================================
-# 🧠 ALERT THRESHOLDS
-# ============================================
-TEMP_THRESHOLD = 29.0     # Sıcaklık eşiği
-CO_THRESHOLD = 8.0        # CO gazı eşiği
-SMOKE_THRESHOLD = 0.02    # Duman eşiği
 
-# ============================================
-# 🔁 LOOP: Veri kontrolü
-# ============================================
-last_checked_id = 0  # En son kontrol edilen satır ID'si
+🧠 ALERT THRESHOLDS
+TEMP_THRESHOLD = 29.0     # Temperature threshold
+CO_THRESHOLD = 8.0        # CO gas threshold
+SMOKE_THRESHOLD = 0.02    # Smoke threshold
+
+# 🔁 LOOP: Data control
+last_checked_id = 0  # Last checked row ID
 
 while True:
     query = f"""
@@ -40,7 +34,7 @@ while True:
 
     for row in rows:
         row_id, ts, temp, co, smoke = row
-        last_checked_id = row_id  # Satırı işledik, ID'yi güncelle
+        last_checked_id = row_id  # We processed the row, update the ID
 
         if temp and temp > TEMP_THRESHOLD:
             print(f"[ALERT] 🚨 High Temperature at {ts}: {temp}°C")
@@ -51,4 +45,4 @@ while True:
         if smoke and smoke > SMOKE_THRESHOLD:
             print(f"[ALERT] 🔥 High Smoke Level at {ts}: {smoke}")
 
-    time.sleep(3)  # 3 saniyede bir kontrol
+    time.sleep(3)  # Check every 3 seconds
