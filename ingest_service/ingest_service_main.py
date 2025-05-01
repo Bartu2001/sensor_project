@@ -5,9 +5,8 @@ import json
 import os
 from datetime import datetime
 
-# ============================================
-# ✅ PostgreSQL Bağlantısı
-# ============================================
+
+# PostgreSQL Connection
 conn = psycopg2.connect(
     host="localhost",
     database="postgres",
@@ -16,15 +15,13 @@ conn = psycopg2.connect(
 )
 cur = conn.cursor()
 
-# ============================================
-# ✅ Dosya Yolları
+# File Paths
 # ============================================
 csv_file_path = "../data/iot_telemetry_data.csv"
 checkpoint_path = "checkpoint.json"
 
-# ============================================
-# ✅ Checkpoint Fonksiyonları
-# ============================================
+#Checkpoint Functions
+
 def load_checkpoint():
     if not os.path.exists(checkpoint_path):
         return 0
@@ -35,18 +32,15 @@ def save_checkpoint(line_number):
     with open(checkpoint_path, "w") as f:
         json.dump({"line": line_number}, f)
 
-# ============================================
-# ✅ CSV'yi Belleğe Oku
-# ============================================
+# Reading CSV into Memory
+
 with open(csv_file_path, mode='r') as file:
     reader = csv.DictReader(file)
     data_rows = list(reader)
 
-# ============================================
-# ✅ Veri Akışı Başlat
-# ============================================
+#Starting a Data Stream
 index = load_checkpoint()
-batch_size = 100  # Her saniyede 100 satır
+batch_size = 100  
 
 while True:
     for i in range(batch_size):
