@@ -18,7 +18,7 @@ TEMP_THRESHOLD = 29.0     # Temperature threshold
 CO_THRESHOLD = 8.0        # CO gas threshold
 SMOKE_THRESHOLD = 0.02    # Smoke threshold
 
-# 🔁 LOOP: Data control
+#LOOP: Data control
 last_checked_id = 0  # Last checked row ID
 
 while True:
