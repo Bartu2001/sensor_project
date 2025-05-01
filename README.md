@@ -1,8 +1,15 @@
 # 📡 Real-Time Sensor Data Pipeline
-This project simulates a real-time sensor data pipeline using Python, PostgreSQL, and Streamlit.
-It processes IoT sensor data from a CSV file, stores it in a database, visualizes it in real-time, and triggers alerts for critical values.
 
-# 🗂️ Project Structure
+This project simulates a real-time data pipeline architecture using **Python**, **PostgreSQL**, and **Streamlit**, mimicking real-world IoT sensor streaming.
+
+It is designed to:
+- Ingest sensor data from a CSV file in **real time** (100 rows per second)
+- Store it efficiently in a **PostgreSQL** database
+- Visualize the incoming data using a **live dashboard** in Streamlit
+- Trigger **alerts** when temperature exceeds certain thresholds
+- Automatically **resume from where it left off** in case of interruption, using a `checkpoint.json` system
+
+# 🗂️ Project Architecture
 
 sensor_project/
 
@@ -31,6 +38,7 @@ Streamlit
 psycopg2
 
 Git & GitHub
+
 
 🚀 How It Works
 
@@ -96,6 +104,23 @@ These dashboards are dynamically generated using Streamlit, with real-time data 
 ---------------------------------
 
 <img width="1350" alt="Ekran Resmi 2025-05-01 21 13 49" src="https://github.com/user-attachments/assets/fd7fc6c2-599e-4d0a-905d-697f65bf5130" />
+
+
+
+👨‍💻 Author
+
+
+Ahmet Bartu Tanaçan
+
+
+Data Engineer 
+
+
+📫 tanacanb@gmail.com
+
+
+🔗 linkedin.com/in/bartu-tanacan
+
 
 
 
